@@ -27,10 +27,12 @@ app.post('/', function(req,res) {
   const color = req.body.color
   const tokens = req.body.token.split('|')
   const msid = req.body.msid
-  const data = req.data
+  const type = req.body.type
 
   const message = {
-      data: data,
+      data: {
+        type: type
+      },
       notification: {
         title: title,
         body: body,
