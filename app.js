@@ -20,18 +20,18 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 app.post('/', function(req,res) {
-  console.log(req.body)
-
   const title = req.body.title
   const body = req.body.body
   const color = req.body.color
   const tokens = req.body.token.split('|')
   const msid = req.body.msid
   const type = req.body.type
+  const svid = req.body.svid
 
   const message = {
       data: {
-        type: type
+        type: type,
+        svid: svid
       },
       notification: {
         title: title,
@@ -78,35 +78,6 @@ app.post('/', function(req,res) {
     res.json({result: 0, message: error})
   })
 })
-
-//
-// app.get('/:token',function(req,res){
-//     const message = {
-//         data: {
-//           score: '850',
-//           time: '2:45'
-//         },
-//         android: {
-//             ttl: 3600 * 1000, // 1 hour in milliseconds
-//             priority: 'normal',
-//             notification: {
-//               title: '[QUV]',
-//               body: '새 게시글이 작성되었습니다.',
-//               color: '#f45342'
-//             }
-//         },
-//         token: req.params.token,
-//     }
-//
-//     admin.messaging().send(message)
-//     .then((response) => {
-//         // Response is a message ID string.
-//         console.log('Successfully sent message:', response)
-//     })
-//     .catch((error) => {
-//         console.log('Error sending message:', error)
-//     })
-// })
 
 app.listen(3000, function(){
     console.log(`Connect 3000 port`)
