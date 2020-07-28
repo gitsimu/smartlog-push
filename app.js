@@ -22,7 +22,7 @@ app.use(express.static('public'))
 app.post('/', function(req,res) {
   const title = req.body.title
   const body = req.body.body
-  const color = req.body.color
+  // const color = req.body.color
   const tokens = req.body.token.split('|')
   const msid = req.body.msid
   const type = req.body.type
@@ -40,9 +40,9 @@ app.post('/', function(req,res) {
       android: { // 안드로이드 전용 속성
           ttl: 3600 * 1000, // 1 hour in milliseconds, 수명
           priority: 'normal',
-          notification: {
-            color: color,
-          }
+          // notification: {
+          //   color: color,
+          // }
       },
       tokens: tokens,
   }
